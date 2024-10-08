@@ -1,0 +1,23 @@
+{
+    "name": "my-nodejs-webhook-project",
+    "version": "1.0.0",
+    "description": "Node.js webhook project with Puppeteer and Telegram integration",
+    "main": "src/app.js",
+    "type": "module",
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "fs": "^0.0.1-security",
+        "node-fetch": "^3.3.2",
+        "puppeteer": "^23.5.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.0"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
