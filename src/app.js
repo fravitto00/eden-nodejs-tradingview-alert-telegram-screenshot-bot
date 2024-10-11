@@ -9,6 +9,8 @@ dotenv.config();
 const server = http.createServer(async (req, res) => {
   const WEBHOOK = '/eden-tradingview-telegram-bot-webhook';
   const parsedUrl = parse(req.url, true);
+  console.log(parsedUrl.pathname);
+  console.log(req.method)
 
   if (parsedUrl.pathname === WEBHOOK && req.method === 'POST') {
     let body = '';
