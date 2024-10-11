@@ -2,15 +2,19 @@ import fetch from 'node-fetch';
 
 async function sendScreenshot(screenshot) {
   const chatId = process.env.ENV_CHAT_ID;
-  const formData = new URLSearchParams();
+  const formData = new FormData();
   formData.append('chat_id', chatId);
-  formData.append('photo', `data:image/png;base64,${screenshot}`);
 
-  return (await fetch(apiUrl('sendPhoto'), {
+  const blob = new Blob([screenshot], { type: "image/png" });
+  formData.append("photo", blob);
+
+  const response = await fetch(apiUrl('sendPhoto'), {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: formData.toString(),
-  })).json();
+    body: formData,
+  });
+
+  const jsonResponse = await response.json();
+  return jsonResponse;
 }
 
 async function sendScreenshotInfo(tradingViewAlert) {
