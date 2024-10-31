@@ -5,10 +5,12 @@ import fs from 'fs';
 // Handle requests to the TradingView webhook
 async function handleWebhook(requestBody) {
   const symbol = requestBody.symbol;
-  const tradingViewAlert = requestBody.message;
+  const graphLink = `https://it.tradingview.com/chart/GoLIDkHa/?symbol=${symbol}`;
+  const tradingViewAlert = requestBody.message + ' ' + graphLink;
+  console.log(graphLink);
 
   // Capture screenshot of TradingView chart
-  const screenshot = await captureTradingViewScreenshot(symbol);
+  const screenshot = await captureTradingViewScreenshot(graphLink);
 
   // Send screenshot and alert message to Telegram
   const screenshotReturn = await sendScreenshot(screenshot);

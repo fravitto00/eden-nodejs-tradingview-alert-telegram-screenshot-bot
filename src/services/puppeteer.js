@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-async function captureTradingViewScreenshot(symbol) {
+async function captureTradingViewScreenshot(graphLink) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const cookieToPreventBanner = {
@@ -9,7 +9,7 @@ async function captureTradingViewScreenshot(symbol) {
     "domain": ".tradingview.com",
   }
   await page.setCookie(cookieToPreventBanner);
-  await page.goto(`https://it.tradingview.com/chart/GoLIDkHa/?symbol=${symbol}`);
+  await page.goto(graphLink);
 
   const graphElement = await page.waitForSelector('body > div.js-rootresizer__contents.layout-with-border-radius > div.layout__area--center > div > div.chart-container-border > div > div.chart-markup-table');
   const screenshot = await graphElement.screenshot();
